@@ -19,17 +19,14 @@ body {
   font-family: Roboto;
 }
 
-/* styles for MAIN HEADER */
+/* main header styles */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #dc4c3e;
   color: #ffffff;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 50px;
+  padding: 10px 20px 10px 50px;
 }
 
 #left-side {
@@ -73,7 +70,7 @@ header > div {
   min-height: calc(100vh - 41px);
 }
 
-/* styles for SIDE NAVIGATION */
+/* side navigation */
 .column-one-nav {
   display: flex;
   width: 300px;
@@ -89,7 +86,7 @@ header > div {
   color: #7e7d79;
 }
 
-/* styles for Item List */
+/* task list column */
 .column-two-list {
   display: flex;
   flex: 1;
@@ -103,7 +100,7 @@ h1 {
   font-size: 20px;
 }
 
-/* styling for lists*/
+/* remove default list style */
 ul {
   list-style: none;
 }
@@ -120,20 +117,17 @@ ul {
   margin-bottom: 20px;
   gap: 15px;
   padding-bottom: 10px;
-  border-bottom: #f3f3f3 solid 2px;
+  border-bottom: 2px solid #f3f3f3;
   padding-right: 40px;
   font-size: 14px;
 }
 
-/* styling for search bar */
+/* search bar styles */
 #search-bar {
   display: flex;
   justify-content: center;
   background-color: #e47367;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 7px;
+  padding: 5px 7px 5px 10px;
   border-radius: 5px;
 }
 
@@ -155,15 +149,15 @@ ul {
   gap: 10px;
 }
 
+/* checkbox styles */
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: 2px solid;
-  border-color: #b7b7b7;
-  appearance: none;
+  border: 2px solid #b7b7b7;
   border-radius: 100px;
   background-color: #ffffff;
   cursor: pointer;
@@ -174,14 +168,14 @@ input[type="checkbox"]:checked {
   border-color: #dc4c3e;
 }
 
-/*hiding side-bar at 480px*/
+/* hide side nav on small screens */
 @media (max-width: 480px) {
   .column-one-nav {
     display: none;
   }
 }
 
-/* NEW: Task form */
+/* task form styles */
 form:not(#search-bar) {
   display: flex;
   gap: 10px;
@@ -218,7 +212,7 @@ form:not(#search-bar) button:hover {
   background-color: #c0392b;
 }
 
-/* Filter buttons */
+/* filter buttons */
 .filter-buttons {
   display: flex;
   gap: 10px;
@@ -248,7 +242,7 @@ form:not(#search-bar) button:hover {
   background-color: #ffffff;
 }
 
-/* Delete button */
+/* delete button */
 .delete-btn {
   padding: 6px 12px;
   background-color: #d0d0d0;
@@ -265,7 +259,7 @@ form:not(#search-bar) button:hover {
   color: white;
 }
 
-/* Completed styling */
+/* completed task styling */
 li span.completed {
   text-decoration: line-through;
   opacity: 0.6;

@@ -2,7 +2,7 @@ import TaskItem from "./TaskItem";
 
 function TaskList({ tasks, onToggle, onDelete }) {
   if (tasks.length === 0) {
-    return <p>No tasks yet! Add one above.</p>;
+    return <p>No tasks yet!</p>;
   }
 
   return (

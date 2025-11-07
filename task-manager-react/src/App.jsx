@@ -4,7 +4,6 @@ import TaskList from "./components/TaskList";
 import TaskCounter from "./components/TaskCounter";
 import "./App.css";
 
-// Import icons
 import menuIcon from "./assets/menu_icon.png";
 import searchIcon from "./assets/search_icon.png";
 import checkIcon from "./assets/check_icon.png";
@@ -13,10 +12,12 @@ import calendarIcon from "./assets/calendar_icon.png";
 import upcomingIcon from "./assets/upcoming_icon.png";
 
 function App() {
+  // state for all tasks
   const [tasks, setTasks] = useState([]);
+  // state for current filter: all / active / completed
   const [filter, setFilter] = useState("all");
 
-  // Add a new task
+  // add a new task to the list
   const addTask = (taskText) => {
     const newTask = {
       id: Date.now(),
@@ -26,7 +27,7 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
-  // Toggle task completion
+  // toggle a task's completed status
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -35,20 +36,16 @@ function App() {
     );
   };
 
-  // Delete a task
+  // delete a task from the list
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // Filter tasks based on current filter
+  // get tasks based on current filter
   const getFilteredTasks = () => {
-    if (filter === "active") {
-      return tasks.filter((task) => !task.completed);
-    }
-    if (filter === "completed") {
-      return tasks.filter((task) => task.completed);
-    }
-    return tasks; // 'all'
+    if (filter === "active") return tasks.filter((task) => !task.completed);
+    if (filter === "completed") return tasks.filter((task) => task.completed);
+    return tasks;
   };
 
   const filteredTasks = getFilteredTasks();
@@ -58,20 +55,21 @@ function App() {
       <header>
         <div id="left-side">
           <button className="hamburger-menu">
-            <img src={menuIcon} alt="icon of a menu" />
+            <img src={menuIcon} alt="menu icon" />
           </button>
 
           <form id="search-bar">
-            <img src={searchIcon} alt="icon of search" />
+            <img src={searchIcon} alt="search icon" />
             <input type="search" placeholder="Quick find" />
           </form>
         </div>
 
         <div id="task-counter">
           <span>
-            <img src={checkIcon} alt="icon of a check" />
+            <img src={checkIcon} alt="check icon" />
           </span>
-          <TaskCounter tasks={tasks} />
+          {/* show task completion ratio based on filter */}
+          <TaskCounter tasks={tasks} filter={filter} />
         </div>
       </header>
 
@@ -80,17 +78,17 @@ function App() {
           <nav className="navigation">
             <ul>
               <li>
-                <img src={inboxIcon} alt="icon of an inbox" />
+                <img src={inboxIcon} alt="inbox icon" />
                 <span>Inbox</span>
                 <span className="task-count">{tasks.length}</span>
               </li>
               <li>
-                <img src={calendarIcon} alt="icon of a calendar" />
+                <img src={calendarIcon} alt="calendar icon" />
                 <span>Today</span>
                 <span className="task-count">{tasks.length}</span>
               </li>
               <li>
-                <img src={upcomingIcon} alt="icon of upcoming" />
+                <img src={upcomingIcon} alt="upcoming icon" />
                 <span>Upcoming</span>
               </li>
             </ul>
@@ -100,8 +98,10 @@ function App() {
         <section className="column-two-list">
           <h1>Inbox</h1>
 
+          {/* form to add a new task */}
           <TaskForm onAddTask={addTask} />
 
+          {/* filter buttons for task list */}
           <div className="filter-buttons">
             <button
               className={filter === "all" ? "active" : ""}
@@ -123,6 +123,7 @@ function App() {
             </button>
           </div>
 
+          {/* show filtered tasks */}
           <TaskList
             tasks={filteredTasks}
             onToggle={toggleTask}
